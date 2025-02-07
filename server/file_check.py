@@ -41,7 +41,8 @@ def compare_directories(ssh_server1, ssh_server2, source_pw, dest_pw):
     print('\n📌 두 서버에서 직접 파일 비교 실행 중...\n')
 
     # 각 서버에서 파일 리스트 가져오기
-    cmd_ls = f'find {SOURCE_DIR} -type f | sort'
+    #cmd_ls = f'find {SOURCE_DIR} -type f | sort'
+    cmd_ls = f"find {SOURCE_DIR} -type f ! -path '*/.vscode-server/*'| sort"  # ignore */.vscode-server/*
     
     print(f'📂 서버1에서 파일 목록 가져오는 중...')
     files_server1, error1 = execute_command(ssh_server1, cmd_ls, source_pw)
